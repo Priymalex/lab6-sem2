@@ -441,16 +441,16 @@ if (isset($_GET['msg'])) {
         <p>Вы авторизованы как <strong><?= htmlspecialchars($_SERVER['PHP_AUTH_USER']) ?></strong></p>
         
         <?php if ($message): ?>
-            <div class="message">✅ <?= $message ?></div>
+            <div class="message"> <?= $message ?></div>
         <?php endif; ?>
         
         <?php if (isset($error)): ?>
-            <div class="error">❌ <?= $error ?></div>
+            <div class="error"> <?= $error ?></div>
         <?php endif; ?>
         
         
         <div class="stats-box">
-            <h2>📊 Статистика</h2>
+            <h2>Статистика</h2>
             <div class="stats-grid">
                 <div class="stat-card">
                     <strong><?= $total_users ?></strong>
@@ -474,7 +474,7 @@ if (isset($_GET['msg'])) {
             <div class="edit-form">
                 <h3>Редактирование записи #<?= $edit_user['id'] ?></h3>
                 <?php if (isset($edit_error)): ?>
-                    <div class="error">❌ <?= $edit_error ?></div>
+                    <div class="error"> <?= $edit_error ?></div>
                 <?php endif; ?>
                 <form method="post">
                     <input type="hidden" name="edit_id" value="<?= $edit_user['id'] ?>">
@@ -542,7 +542,7 @@ if (isset($_GET['msg'])) {
         <?php endif; ?>
         
        
-        <h2>📋 Все пользователи</h2>
+        <h2>Все пользователи</h2>
         
         <?php if (empty($users)): ?>
             <p>Нет зарегистрированных пользователей.</p>
@@ -570,7 +570,7 @@ if (isset($_GET['msg'])) {
                             <td><?= htmlspecialchars($user['tel']) ?></td>
                             <td><?= htmlspecialchars($user['email']) ?></td>
                             <td><?= htmlspecialchars($user['dateborn']) ?></td>
-                            <td><?= $user['sex'] == 'Male' ? '👨 Мужской' : '👩 Женский' ?></td>
+                            <td><?= $user['sex'] == 'Male' ? 'Мужской' : 'Женский' ?></td>
                             <td>
                                 <?php 
                                 $langs = explode(', ', $user['languages'] ?? '');
@@ -585,10 +585,10 @@ if (isset($_GET['msg'])) {
                             </td>
                             <td style="max-width: 250px;"><?= htmlspecialchars(substr($user['bio'] ?? '', 0, 100)) ?>...</td>
                             <td class="<?= $user['agree'] ? 'agree-yes' : 'agree-no' ?>">
-                                <?= $user['agree'] ? '✅ Да' : '❌ Нет' ?>
+                                <?= $user['agree'] ? 'Да' : 'Нет' ?>
                             </td>
                             <td class="actions">
-                                <a href="?edit=<?= $user['id'] ?>" class="btn btn-edit">✏️ Редактировать</a>
+                                <a href="?edit=<?= $user['id'] ?>" class="btn btn-edit">Редактировать</a>
                                 <a href="?delete=<?= $user['id'] ?>" class="btn btn-delete" 
                                    onclick="return confirm('Вы уверены, что хотите удалить пользователя «<?= htmlspecialchars($user['name']) ?>»?')">🗑️ Удалить</a>
                             </td>
