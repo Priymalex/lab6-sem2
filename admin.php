@@ -195,11 +195,11 @@ $stmt = $db->prepare("
         r.sex,
         r.bio,
         r.agree,
-    GROUP_CONCAT(l.language_name SEPARATOR ', ') as languages
+        COALESCE(GROUP_CONCAT(DISTINCT l.language_name SEPARATOR ', '), '') as languages
     FROM Frequest r
     LEFT JOIN Connect c ON r.id = c.request_id
     LEFT JOIN LANGUAGES l ON c.language_id = l.language_id
-    GROUP BY r.id
+    GROUP BY r.id, r.name, r.tel, r.email, r.dateborn, r.sex, r.bio, r.agree
     ORDER BY r.id DESC
 ");
 $stmt->execute();
@@ -583,7 +583,7 @@ if (isset($_GET['msg'])) {
                                 endforeach;
                                 ?>
                             </td>
-                            <td style="max-width: 250px;"><?= htmlspecialchars(mb_substr($user['bio'] ?? '', 0, 100)) ?>...</td>
+                            <td style="max-width: 250px;"><?= htmlspecialchars(substr($user['bio'] ?? '', 0, 100)) ?>...</td>
                             <td class="<?= $user['agree'] ? 'agree-yes' : 'agree-no' ?>">
                                 <?= $user['agree'] ? '✅ Да' : '❌ Нет' ?>
                             </td>
